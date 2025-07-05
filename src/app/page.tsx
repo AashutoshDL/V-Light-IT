@@ -4,10 +4,15 @@ import dynamic from "next/dynamic";
 import { OrbitControls } from "@react-three/drei";
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
+import { useRouter } from "next/navigation";
 
 const Model = dynamic(() => import("../components/Model"), { ssr: false });
 
 export default function Home() {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push("/products");
+  };
   return (
     <main className={`flex flex-row md:flex-row bg-background`}>
       <div className="w-full md:w-1/2 min-h-screen flex flex-col px-4">
@@ -20,7 +25,10 @@ export default function Home() {
           </h1>
         </div>
         <div className="mt-70 text-end bg-button-background">
-          <button className="px-6 py-3 text-lg rounded transition">
+          <button
+            className="px-6 py-3 text-lg rounded transition"
+            onClick={handleClick}
+          >
             Explore more products
           </button>
         </div>

@@ -21,10 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={` ${syncopate.className} antialiased`}
-        suppressHydrationWarning
-      >
+      <body className={`antialiased`} suppressHydrationWarning>
         <Navbar />
         {children}
       </body>

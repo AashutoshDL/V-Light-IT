@@ -3,12 +3,16 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Search, ShoppingCart } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const router = useRouter();
+  const handleCartClick = () => {
+    router.push("/cart");
+  };
   return (
-    <nav className="shadow-md sticky top-0 z-50">
+    <nav className="shadow-md sticky top-0 z-50 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <Link href="/" className="text-2xl font-bold">
@@ -18,7 +22,7 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-6">
             <Link href="/">Home</Link>
             <Link href="/about">About</Link>
-            <Link href="/projects">Products</Link>
+            <Link href="/products">Products</Link>
             <Link href="/contact">Contact</Link>
           </div>
 
@@ -27,7 +31,11 @@ const Navbar = () => {
               <Search className="w-5 h-5" />
             </button>
             {/* Cart Icon */}
-            <button aria-label="Cart" className="relative">
+            <button
+              aria-label="Cart"
+              className="relative"
+              onClick={handleCartClick}
+            >
               <ShoppingCart className="w-5 h-5" />
             </button>
           </div>

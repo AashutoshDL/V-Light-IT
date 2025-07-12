@@ -4,22 +4,31 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function ProductsCard({
-  product,
-}: {
-  product: {
-    id: number;
-    name: string;
-    price: number;
-    image: string;
-    description: string;
-  };
-}) {
+type ImageType = {
+  url: string;
+  public_id: string;
+  _id?: string;
+};
+
+type ProductType = {
+  _id?: string | number; // depending on your DB
+  name: string;
+  price: number;
+  images: ImageType[];
+  image_count: number;
+  product_description?: string;
+};
+
+export default function ProductsCard({ product }: { product: ProductType }) {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/products/${product.id}`);
+    if (product._id) router.push(`/products/${product._id}`);
   };
+
+  if (!product.images || product.images.length === 0) {
+    return <div>No Image Available</div>;
+  }
 
   return (
     <div
@@ -29,10 +38,11 @@ export default function ProductsCard({
       <div className="flex justify-center mb-4 overflow-hidden rounded-lg">
         <Image
           className="rounded-lg object-cover transition-transform duration-300 group-hover:scale-110"
-          src={product.image}
+          src={product.images[0].url}
           alt={product.name}
           width={500}
           height={400}
+          priority
         />
       </div>
       <div className="flex flex-row items-center justify-between">

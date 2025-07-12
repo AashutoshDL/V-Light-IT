@@ -27,9 +27,9 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex space-x-6">
-            <button aria-label="Search">
+            {/* <button aria-label="Search">
               <Search className="w-5 h-5" />
-            </button>
+            </button> */}
             {/* Cart Icon */}
             <button
               aria-label="Cart"

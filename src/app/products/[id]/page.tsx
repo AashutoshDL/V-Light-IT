@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 export default function ProductDetailPage() {
   const params = useParams();
-  const product = products.find((p) => p.id.toString() === params.id);
+  const product = products.find((p) => p._id.toString() === params._id);
   const router = useRouter();
 
   const handleCartClick = () => {
